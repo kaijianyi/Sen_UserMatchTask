@@ -5,7 +5,6 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.reflect.TypeToken;
 import com.kaijy.model.Platform;
 import com.kaijy.model.PlatformTotal;
 import com.kaijy.model.Task;
@@ -25,10 +24,13 @@ public class SenStart {
         // 汇总数据
         List<Platform> platformList = new ArrayList<Platform>();
 
+        Instant start = Instant.now();
         // 开始迭代
         for (int i = 1; i <= ConstsUtils.RUNNUM; i++) {
             // 平台汇总数据
             Platform platform = new Platform();
+
+            System.out.println("\n$$$$$$$$$$$$$$$$$$$$$ 开始生成随机数据 $$$$$$$$$$$$$$$$$$$$$");
 
             Instant ranTimeStart = Instant.now();
 
@@ -45,9 +47,6 @@ public class SenStart {
             String originUserListStr = JsonUtils.objToFastjson(originUserList);
             // 任务Json
             String originTaskListStr = JsonUtils.objToFastjson(originTaskList);
-
-            originUserListStr = "[{\"allocationMap\":{},\"bid\":6,\"careless\":0,\"id\":0,\"minTimeTotal\":0,\"originSenTime\":7,\"pay\":\"0\",\"taskIdList\":[2],\"userId\":1242},{\"allocationMap\":{},\"bid\":7,\"careless\":0,\"id\":1,\"minTimeTotal\":0,\"originSenTime\":5,\"pay\":\"0\",\"taskIdList\":[0,2],\"userId\":1417},{\"allocationMap\":{},\"bid\":6,\"careless\":0,\"id\":2,\"minTimeTotal\":0,\"originSenTime\":9,\"pay\":\"0\",\"taskIdList\":[0],\"userId\":1487},{\"allocationMap\":{},\"bid\":8,\"careless\":0,\"id\":3,\"minTimeTotal\":0,\"originSenTime\":9,\"pay\":\"0\",\"taskIdList\":[0,2],\"userId\":2818},{\"allocationMap\":{},\"bid\":8,\"careless\":0,\"id\":4,\"minTimeTotal\":0,\"originSenTime\":6,\"pay\":\"0\",\"taskIdList\":[1,2],\"userId\":2828},{\"allocationMap\":{},\"bid\":10,\"careless\":0,\"id\":5,\"minTimeTotal\":0,\"originSenTime\":5,\"pay\":\"0\",\"taskIdList\":[0],\"userId\":3170},{\"allocationMap\":{},\"bid\":9,\"careless\":0,\"id\":6,\"minTimeTotal\":0,\"originSenTime\":7,\"pay\":\"0\",\"taskIdList\":[0],\"userId\":3781},{\"allocationMap\":{},\"bid\":6,\"careless\":0,\"id\":7,\"minTimeTotal\":0,\"originSenTime\":10,\"pay\":\"0\",\"taskIdList\":[1],\"userId\":3974},{\"allocationMap\":{},\"bid\":6,\"careless\":1,\"id\":8,\"minTimeTotal\":0,\"originSenTime\":8,\"pay\":\"0\",\"taskIdList\":[1],\"userId\":4029},{\"allocationMap\":{},\"bid\":7,\"careless\":0,\"id\":9,\"minTimeTotal\":0,\"originSenTime\":8,\"pay\":\"0\",\"taskIdList\":[0],\"userId\":4683},{\"allocationMap\":{},\"bid\":8,\"careless\":1,\"id\":10,\"minTimeTotal\":0,\"originSenTime\":5,\"pay\":\"0\",\"taskIdList\":[],\"userId\":6135},{\"allocationMap\":{},\"bid\":6,\"careless\":0,\"id\":11,\"minTimeTotal\":0,\"originSenTime\":10,\"pay\":\"0\",\"taskIdList\":[],\"userId\":6330},{\"allocationMap\":{},\"bid\":7,\"careless\":0,\"id\":12,\"minTimeTotal\":0,\"originSenTime\":5,\"pay\":\"0\",\"taskIdList\":[2],\"userId\":6763},{\"allocationMap\":{},\"bid\":7,\"careless\":1,\"id\":13,\"minTimeTotal\":0,\"originSenTime\":7,\"pay\":\"0\",\"taskIdList\":[1,2],\"userId\":6779},{\"allocationMap\":{},\"bid\":6,\"careless\":0,\"id\":14,\"minTimeTotal\":0,\"originSenTime\":7,\"pay\":\"0\",\"taskIdList\":[],\"userId\":7274},{\"allocationMap\":{},\"bid\":6,\"careless\":0,\"id\":15,\"minTimeTotal\":0,\"originSenTime\":9,\"pay\":\"0\",\"taskIdList\":[0],\"userId\":7548},{\"allocationMap\":{},\"bid\":6,\"careless\":1,\"id\":16,\"minTimeTotal\":0,\"originSenTime\":6,\"pay\":\"0\",\"taskIdList\":[0,2],\"userId\":7572},{\"allocationMap\":{},\"bid\":9,\"careless\":0,\"id\":17,\"minTimeTotal\":0,\"originSenTime\":7,\"pay\":\"0\",\"taskIdList\":[],\"userId\":7900},{\"allocationMap\":{},\"bid\":9,\"careless\":0,\"id\":18,\"minTimeTotal\":0,\"originSenTime\":8,\"pay\":\"0\",\"taskIdList\":[],\"userId\":7917},{\"allocationMap\":{},\"bid\":9,\"careless\":0,\"id\":19,\"minTimeTotal\":0,\"originSenTime\":6,\"pay\":\"0\",\"taskIdList\":[0,1],\"userId\":8114},{\"allocationMap\":{},\"bid\":10,\"careless\":0,\"id\":20,\"minTimeTotal\":0,\"originSenTime\":5,\"pay\":\"0\",\"taskIdList\":[0,2],\"userId\":8354},{\"allocationMap\":{},\"bid\":7,\"careless\":0,\"id\":21,\"minTimeTotal\":0,\"originSenTime\":10,\"pay\":\"0\",\"taskIdList\":[],\"userId\":8432},{\"allocationMap\":{},\"bid\":9,\"careless\":0,\"id\":22,\"minTimeTotal\":0,\"originSenTime\":8,\"pay\":\"0\",\"taskIdList\":[0,2],\"userId\":8437},{\"allocationMap\":{},\"bid\":6,\"careless\":1,\"id\":23,\"minTimeTotal\":0,\"originSenTime\":10,\"pay\":\"0\",\"taskIdList\":[],\"userId\":8764},{\"allocationMap\":{},\"bid\":6,\"careless\":1,\"id\":24,\"minTimeTotal\":0,\"originSenTime\":5,\"pay\":\"0\",\"taskIdList\":[0,1],\"userId\":9234}]";
-            originTaskListStr = "[{\"id\":0,\"originSenTime\":12,\"remainSenTime\":12,\"taskId\":3},{\"id\":1,\"originSenTime\":12,\"remainSenTime\":12,\"taskId\":369},{\"id\":2,\"originSenTime\":15,\"remainSenTime\":15,\"taskId\":579}]";
 
             // 生成数据时间
             Instant ranTimeEnd = Instant.now();
@@ -76,10 +75,7 @@ public class SenStart {
 
             Instant abnormalTimeStart = Instant.now();
 
-            // 无需重复拍卖
-            String normalWinnerListStr = JsonUtils.objToFastjson(normalWinnerList);
-            List<User> abnormalWinnerList = JsonUtils.fastjsonToObj(normalWinnerListStr, new TypeToken<List<User>>() {
-            }.getType());
+            List<User> abnormalWinnerList = AuctionService.startAuction(originUserListStr, originTaskListStr);
             // 判断是否存在异常
             boolean isAbnormal = McdService.isAbnormal(abnormalWinnerList);
             // 浅拷贝
@@ -134,6 +130,10 @@ public class SenStart {
             platformList.add(platform);
         }
 
+        Instant end = Instant.now();
+        long time = Duration.between(start, end).toMillis();
+        System.out.println(">>>>总用时：" + time);
+
         PlatformTotal platformTotal = new PlatformTotal();
 
         // 数据求和
@@ -173,7 +173,7 @@ public class SenStart {
 
         // 平均，100次随机数据-运行时间
         platformTotal.setRandomRunTimeAve(NumberUtils.divisionStrTime(platformTotal.getRandomRunTimeTotal(),
-                String.valueOf(ConstsUtils.RUNNUM * 1000)));
+                String.valueOf(ConstsUtils.RUNNUM * 1)));
 
         // 平均，100次异常-感知时间
         platformTotal.setNormalTimeAve(NumberUtils.divisionStr(String.valueOf(platformTotal.getNormalTimeTotal()),
@@ -183,7 +183,7 @@ public class SenStart {
                 NumberUtils.divisionStr(platformTotal.getNormalPayTotal(), String.valueOf(ConstsUtils.RUNNUM)));
         // 平均，100次标准-运行时间
         platformTotal.setNormalRunTimeAve(NumberUtils.divisionStrTime(platformTotal.getNormalRunTimeTotal(),
-                String.valueOf(ConstsUtils.RUNNUM * 1000)));
+                String.valueOf(ConstsUtils.RUNNUM * 1)));
 
         // 平均，100次异常-感知时间
         platformTotal.setAbnormalTimeAve(NumberUtils.divisionStr(String.valueOf(platformTotal.getAbnormalTimeTotal()),
@@ -193,7 +193,7 @@ public class SenStart {
                 NumberUtils.divisionStr(platformTotal.getAbnormalPayTotal(), String.valueOf(ConstsUtils.RUNNUM)));
         // 平均，100次异常-运行时间
         platformTotal.setAbnormalRunTimeAve(NumberUtils.divisionStrTime(platformTotal.getAbnormalRunTimeTotal(),
-                String.valueOf(ConstsUtils.RUNNUM * 1000)));
+                String.valueOf(ConstsUtils.RUNNUM * 1)));
 
         // 平均，100次MCD-感知时间
         platformTotal.setMcdTimeAve(NumberUtils.divisionStr(String.valueOf(platformTotal.getMcdTimeTotal()),
@@ -203,7 +203,7 @@ public class SenStart {
                 NumberUtils.divisionStr(platformTotal.getMcdPayTotal(), String.valueOf(ConstsUtils.RUNNUM)));
         // 平均，100次MCD-运行时间
         platformTotal.setMcdRunTimeAve(NumberUtils.divisionStrTime(platformTotal.getMcdRunTimeTotal(),
-                String.valueOf(ConstsUtils.RUNNUM * 1000)));
+                String.valueOf(ConstsUtils.RUNNUM * 1)));
 
         System.out.println(">>>>>>>随机数据：");
         // System.out.println("随机数据总时间：" + platformTotal.getRandomRunTimeTotal());
