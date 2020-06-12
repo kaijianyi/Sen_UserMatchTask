@@ -93,7 +93,7 @@ public class McdService {
      * @return
      */
     // TODO 调用高德地图的API
-    public static List<User> getMcdSenuser(String originUserListStr) {
+    public static List<User> getMcdUser(String originUserListStr) {
         List<User> mcdBidUserList = JsonUtils.fastjsonToObj(originUserListStr, new TypeToken<List<User>>() {
         }.getType());
         Iterator<User> iteratorUser = mcdBidUserList.iterator();
@@ -104,12 +104,12 @@ public class McdService {
             }
         }
         // 调用MCD算法时间损耗
-        int waitTime = mcdBidUserList.size();
-        try {
-            Thread.sleep(waitTime);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        // int waitTime = mcdBidUserList.size();
+        // try {
+        // Thread.sleep(waitTime);
+        // } catch (InterruptedException e) {
+        // e.printStackTrace();
+        // }
         return mcdBidUserList;
     }
 }

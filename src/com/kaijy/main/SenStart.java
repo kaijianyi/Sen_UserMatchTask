@@ -110,7 +110,7 @@ public class SenStart {
             Instant mcdTimeStart = Instant.now();
 
             // 通过MCD算法去除异常用户数据
-            List<User> mcdBidUserList = McdService.getMcdSenuser(originUserListStr);
+            List<User> mcdBidUserList = McdService.getMcdUser(originUserListStr);
             String mcdBidUserListStr = JsonUtils.objToFastjson(mcdBidUserList);
             // 进行MCD拍卖
             List<User> mcdWinnerList = AuctionService.startAuction(mcdBidUserListStr, originTaskListStr);

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ConstsUtils {
     // 总执行次数
-    public static final int RUNNUM = 1;
+    public static final int RUNNUM = 50;
     // BP值
     public static final float BREAKPOINT = 0.25f;
     // 随机任务数
