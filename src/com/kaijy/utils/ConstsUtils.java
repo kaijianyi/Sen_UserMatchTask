@@ -8,7 +8,7 @@ public class ConstsUtils {
     // BP值
     public static final float BREAKPOINT = 0.25f;
     // 随机任务数
-    public static final int AOI = 40;
+    public static final int AOI = 10;
     // 随机任务数
     public static final int TASKNUM = 40;
     // 随机用户数

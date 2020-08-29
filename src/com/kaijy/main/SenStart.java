@@ -132,7 +132,7 @@ public class SenStart {
 
         Instant end = Instant.now();
         long time = Duration.between(start, end).toMillis();
-        System.out.println(">>>>总用时：" + time);
+        System.out.println("\n>>>>总用时：" + time);
 
         PlatformTotal platformTotal = new PlatformTotal();
 
@@ -173,7 +173,7 @@ public class SenStart {
 
         // 平均，100次随机数据-运行时间
         platformTotal.setRandomRunTimeAve(NumberUtils.divisionStrTime(platformTotal.getRandomRunTimeTotal(),
-                String.valueOf(ConstsUtils.RUNNUM * 1)));
+                String.valueOf(ConstsUtils.RUNNUM * 1000)));
 
         // 平均，100次异常-感知时间
         platformTotal.setNormalTimeAve(NumberUtils.divisionStr(String.valueOf(platformTotal.getNormalTimeTotal()),
@@ -183,7 +183,7 @@ public class SenStart {
                 NumberUtils.divisionStr(platformTotal.getNormalPayTotal(), String.valueOf(ConstsUtils.RUNNUM)));
         // 平均，100次标准-运行时间
         platformTotal.setNormalRunTimeAve(NumberUtils.divisionStrTime(platformTotal.getNormalRunTimeTotal(),
-                String.valueOf(ConstsUtils.RUNNUM * 1)));
+                String.valueOf(ConstsUtils.RUNNUM * 1000)));
 
         // 平均，100次异常-感知时间
         platformTotal.setAbnormalTimeAve(NumberUtils.divisionStr(String.valueOf(platformTotal.getAbnormalTimeTotal()),
@@ -193,7 +193,7 @@ public class SenStart {
                 NumberUtils.divisionStr(platformTotal.getAbnormalPayTotal(), String.valueOf(ConstsUtils.RUNNUM)));
         // 平均，100次异常-运行时间
         platformTotal.setAbnormalRunTimeAve(NumberUtils.divisionStrTime(platformTotal.getAbnormalRunTimeTotal(),
-                String.valueOf(ConstsUtils.RUNNUM * 1)));
+                String.valueOf(ConstsUtils.RUNNUM * 1000)));
 
         // 平均，100次MCD-感知时间
         platformTotal.setMcdTimeAve(NumberUtils.divisionStr(String.valueOf(platformTotal.getMcdTimeTotal()),
@@ -203,7 +203,7 @@ public class SenStart {
                 NumberUtils.divisionStr(platformTotal.getMcdPayTotal(), String.valueOf(ConstsUtils.RUNNUM)));
         // 平均，100次MCD-运行时间
         platformTotal.setMcdRunTimeAve(NumberUtils.divisionStrTime(platformTotal.getMcdRunTimeTotal(),
-                String.valueOf(ConstsUtils.RUNNUM * 1)));
+                String.valueOf(ConstsUtils.RUNNUM * 1000)));
 
         System.out.println(">>>>>>>随机数据：");
         // System.out.println("随机数据总时间：" + platformTotal.getRandomRunTimeTotal());
